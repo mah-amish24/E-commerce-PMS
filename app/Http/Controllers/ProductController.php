@@ -63,9 +63,10 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function show($id)
     {
-        //
+        $product = product::findorFail($id);
+        return view('products.showProduct', compact('product'));
     }
 
     /**

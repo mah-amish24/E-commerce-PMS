@@ -65,7 +65,7 @@
                                 <td>{{$product->description}}</td>
                                 <td>{{$product->price}}</td>
                                 <td><center><img src="{{ asset('uploads/' . $product->image) }}" alt="{{ $product->name }}" width="70px" height="50px"></center>
-                                <td>
+                                <td><a href="{{route('products.show',$product->id)}}" class="btn btn-success btn-sm" role="button" aria-disabled="true">show </a>
                                     <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_product{{$product->id}}">Delete</button>
                                 </td>

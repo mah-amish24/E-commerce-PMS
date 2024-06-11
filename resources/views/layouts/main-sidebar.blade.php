@@ -1,4 +1,9 @@
 <!-- Sidebar Menu -->
+@php
+    $userId = auth()->id();
+    $count = \App\Models\Product::where('user_id', $userId)->count();
+@endphp
+
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
         data-accordion="false">
@@ -8,7 +13,7 @@
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                      WEB-products
-                    <span class="badge badge-info right">{{\App\Models\Product::count()}}</span>
+                    <span class="badge badge-info right">{{ $count }}</span>
                 </p>
             </a>
         </li>
@@ -17,7 +22,7 @@
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                      API-products
-                    <span class="badge badge-info right">{{\App\Models\Product::count()}}</span>
+                    <span class="badge badge-info right">{{ $count }}</span>
                 </p>
             </a>
         </li>
