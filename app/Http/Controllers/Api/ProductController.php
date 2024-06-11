@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
  use App\Http\Controllers\Api\ApiResponseTrait;
  use Illuminate\Http\JsonResponse;
  use App\Http\Resources\ProductResource;
+ use Illuminate\Support\Facades\Storage;
 
 
 
@@ -17,13 +18,12 @@ class ProductController extends Controller
         // $items = product::all();
         $items =  ProductResource::collection(product::get());
 
-        return $this->successResponse($items, 'Items retrieved successfully');
+        return $this->successResponse($items, 'Items saved successfully');
           }
 
-          public function show($id)
-          {
+     public function show($id)
+        {
               $item = product::find($id);
-            // $item = new ProductResource(product::find($id));
       
               if (!$item) {
                   return $this->errorResponse('Item not found', 404);
@@ -33,27 +33,76 @@ class ProductController extends Controller
           }
 
                public function store(Request $request){
-               
-                $validator = Validator::make($request->all(), [
-                  //'name' => 'required|string|max:255',
-                  'description' => 'required',
-                  // 'price' => 'required|numeric|min:0',
-                  ]);
-                  // if ($validator->fails()) {
-                  //  return $this->errorResponse($validator->errors(),400);
-                  //                    }
 
+                $request->validate([
+                  'name' => 'required|string|max:255',
+                  'description' => 'required|string',
+                  'price' => 'required|numeric',
+                  'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+              ]);
 
-               $product = product::create($request->all());
+                try {
+                $file = $request->file('image');
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('', $originalName, 'samir');
+                
+                $product = new Product();
+                $product->user_id = $request->user_id;
+                $product->name = $request->name;
+                $product->description = $request->description;
+                $product->price = $request->price;
+                $product->image = $path;
+                echo $product->save();
 
-               if ($product) {
-               return $this->successResponse(new ProductResource($product), 'Item Saved successfully');
-               } else {
+                  return $this->successResponse($product, 'Items saved successfully');
 
-               return $this->errorResponse('Item not found', 404);
-               }
+                } catch (\Exception $e) {
+    
+                   return $this->errorResponse('Item not found', 404);
+                   }
 
           }
+          
+          public function  update(Request $request, $id){
+           $product = product::find($id);
+           if (!$product) {
+            return $this->errorResponse('Item not found', 404);
+        }
+            $request->validate([
+              'name' => 'required|string|max:255',
+              'description' => 'required|string',
+              'price' => 'required|numeric',
+              'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+          ]);
+             
+            
+            $updateData = $request->only([ 'name','description','price','user_id', ]);
+            $file = $request->file('image');
+            $originalName = $file->getClientOriginalName();
+            $path = $file->storeAs('', $originalName, 'samir');
+            $updateData['image'] = $path;
+            $product->update($updateData);
+            return response()->json(['message' => 'Product updated successfully', 'product' => $product]);
 
+          }
+     public function destroy( $id){
+      
+    {
+        // Find the product by ID
+        $product = Product::find($id);
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+        // Delete the image file if it exists
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
 
-}
+        // Delete the product
+        $product->delete();
+
+        return response()->json(['message' => 'Product deleted successfully']);
+    }
+
+        }
+      }
