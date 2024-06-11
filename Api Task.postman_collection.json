@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "4b22f269-6e1d-4b3f-bc2b-07c5041dc8df",
+		"name": "Api Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36216703"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "get_one_product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/api/products/5"
+					},
+					"response": []
+				},
+				{
+					"name": "get_All_Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/api/products/"
+					},
+					"response": []
+				},
+				{
+					"name": "store_product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
