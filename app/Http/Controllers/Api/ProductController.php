@@ -44,7 +44,7 @@ class ProductController extends Controller
                 try {
                 $file = $request->file('image');
                 $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs('', $originalName, 'samir');
+                $path = $file->storeAs('', $originalName, 'public2');
                 
                 $product = new Product();
                 $product->user_id = $request->user_id;
@@ -79,7 +79,7 @@ class ProductController extends Controller
             $updateData = $request->only([ 'name','description','price','user_id', ]);
             $file = $request->file('image');
             $originalName = $file->getClientOriginalName();
-            $path = $file->storeAs('', $originalName, 'samir');
+            $path = $file->storeAs('', $originalName, 'public2');
             $updateData['image'] = $path;
             $product->update($updateData);
             return response()->json(['message' => 'Product updated successfully', 'product' => $product]);

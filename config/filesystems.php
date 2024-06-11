@@ -41,7 +41,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'samir' => [
+        'public2' => [
             'driver' => 'local',
             'root' => public_path('uploads'),
             'url' => env('APP_URL').'/storage',

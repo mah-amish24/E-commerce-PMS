@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "4b22f269-6e1d-4b3f-bc2b-07c5041dc8df",
 		"name": "Api Task",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36216703"
 	},
 	"item": [
@@ -14,7 +14,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{url}}/api/products/5"
+						"url": {
+							"raw": "{{url}}/api/products/24",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"24"
+							]
+						}
 					},
 					"response": []
 				},
@@ -23,15 +33,288 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{url}}/api/products/"
+						"url": {
+							"raw": "{{url}}/api/products/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "store_product",
 					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name34",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "wasf34",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "34",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Eng Mahmoud/Desktop/logo2.jpg"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/products?name=الاسم&description=الوصف&price=55&image=logo.jpg",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "الاسم"
+								},
+								{
+									"key": "description",
+									"value": "الوصف"
+								},
+								{
+									"key": "price",
+									"value": "55"
+								},
+								{
+									"key": "image",
+									"value": "logo.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "update_name332",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "update_description332",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "332",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Eng Mahmoud/Desktop/logo.jpg"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/products/33",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/products/35",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/register?name=test2&email=test2@yahoo.com&password=123456789",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test2"
+								},
+								{
+									"key": "email",
+									"value": "test2@yahoo.com"
+								},
+								{
+									"key": "password",
+									"value": "123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/login?email=test@yahoo.com&password=123456789",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test@yahoo.com"
+								},
+								{
+									"key": "password",
+									"value": "123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-profile",
+					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/user-profile?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMTk0NTIsImV4cCI6MTcxODEyMzA1MiwibmJmIjoxNzE4MTE5NDUyLCJqdGkiOiJheHJVbHdkNGhWVEFQb2ZlIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.cvVd-Fo6wam_U83_z60ruk3_QfdYHPZ9jHnpyEBg_xw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"user-profile"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMTk0NTIsImV4cCI6MTcxODEyMzA1MiwibmJmIjoxNzE4MTE5NDUyLCJqdGkiOiJheHJVbHdkNGhWVEFQb2ZlIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.cvVd-Fo6wam_U83_z60ruk3_QfdYHPZ9jHnpyEBg_xw"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/refresh?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMTk4NzYsImV4cCI6MTcxODEyMzQ3NiwibmJmIjoxNzE4MTE5ODc2LCJqdGkiOiIzQU1pTm1vVXZYWHJTS3N0Iiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.-e_HRBzT6Ul7I88wXc6KlaIsQrzYM6zzvS2nQfgIR6s",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMTk4NzYsImV4cCI6MTcxODEyMzQ3NiwibmJmIjoxNzE4MTE5ODc2LCJqdGkiOiIzQU1pTm1vVXZYWHJTS3N0Iiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.-e_HRBzT6Ul7I88wXc6KlaIsQrzYM6zzvS2nQfgIR6s"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/logout?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMjAyMDgsImV4cCI6MTcxODEyMzgwOCwibmJmIjoxNzE4MTIwMjA4LCJqdGkiOiI1dmo1UXBiT2llNVhUZTFWIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.tJ7u0Ixm7vPDFxSmP4najEhcSc7JSXWjCu1EoolU7fE",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTgxMjAyMDgsImV4cCI6MTcxODEyMzgwOCwibmJmIjoxNzE4MTIwMjA4LCJqdGkiOiI1dmo1UXBiT2llNVhUZTFWIiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.tJ7u0Ixm7vPDFxSmP4najEhcSc7JSXWjCu1EoolU7fE"
+								}
+							]
+						}
 					},
 					"response": []
 				}

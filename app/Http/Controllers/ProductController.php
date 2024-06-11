@@ -41,7 +41,7 @@ class ProductController extends Controller
         try {
         $file = $request->file('image');
         $originalName = $file->getClientOriginalName();
-        $path = $file->storeAs('', $originalName, 'samir');
+        $path = $file->storeAs('', $originalName, 'public2');
 
         $product = new Product();
         $product->user_id = $request->user_id;
@@ -105,12 +105,12 @@ class ProductController extends Controller
 
         //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         //    }
-        $request->validate([
+             $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+             ]);
 
 
         $product = Product::findOrFail($id);
@@ -121,7 +121,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $originalName = $file->getClientOriginalName();
-            $path = $file->storeAs('', $originalName, 'samir');
+            $path = $file->storeAs('', $originalName, 'public2');
             $product->image = $path;
         }
 
